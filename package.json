@@ -1,0 +1,24 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "This project is based on this tutorial: https://webdesign.tutsplus.com/build-a-simple-weather-app-with-vanilla-javascript--cms-33893t",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eternalexpansion/weather-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/eternalexpansion/weather-app/issues"
+  },
+  "homepage": "https://github.com/eternalexpansion/weather-app#readme",
+  "dependencies": {
+    "axios": "^1.15.1"
+  }
+}
