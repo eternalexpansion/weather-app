@@ -270,3 +270,11 @@ body {
 .api a:hover {
   text-decoration: none;
 }
+
+#clear-btn:hover, #geo-btn:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+}
+#geo-msg {
+  color: #fff;
+}

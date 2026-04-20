@@ -78,3 +78,52 @@ form.addEventListener("submit", e => {
   input.focus();
 });
 
+document.getElementById('clear-btn').addEventListener('click', () => {
+  list.innerHTML = '';
+  msg.textContent = 'List cleared';
+  setTimeout(() => { msg.textContent = ''; }, 2000);
+});
+
+document.getElementById('geo-btn').addEventListener('click', () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const geoUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+        
+        fetch(geoUrl)
+          .then(response => response.json())
+          .then(data => {
+            const { main, name, sys, weather } = data;
+            const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${weather[0]["icon"]}.svg`;
+            
+            const li = document.createElement("li");
+            li.classList.add("city");
+            const markup = `
+              <h2 class="city-name" data-name="${name},${sys.country}">
+                <span>${name}</span>
+                <sup>${sys.country}</sup>
+              </h2>
+              <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
+              <figure>
+                <img class="city-icon" src="${icon}" alt="${weather[0]["description"]}">
+                <figcaption>${weather[0]["description"]} (by geolocation)</figcaption>
+              </figure>
+            `;
+            li.innerHTML = markup;
+            list.appendChild(li);
+            document.getElementById('geo-msg').textContent = `Loaded: ${name}, ${sys.country}`;
+          })
+          .catch(() => {
+            document.getElementById('geo-msg').textContent = 'Location ident error!';
+          });
+      },
+      () => {
+        document.getElementById('geo-msg').textContent = 'Location is not avaliable';
+      }
+    );
+  } else {
+    document.getElementById('geo-msg').textContent = 'Location is not supported by browser';
+  }
+});

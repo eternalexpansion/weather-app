@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+    <h3 id="geo-msg" class="msg" style="font-size: 1.2rem; margin-top: 10px;"></h3>
+</head>
 <div class="api">
   <div class="container">🌞 This demo needs an OpenWeather API key to work. <a target="_blank" href="https://home.openweathermap.org/users/sign_up">Get yours here for free!</a>
   </div>
@@ -9,6 +13,8 @@
       <input type="text" placeholder="Search for a city" autofocus>
       <button type="submit">SUBMIT</button>
       <span class="msg"></span>
+      <button type="button" id="clear-btn" style="margin-left: 10px; background: #ff8c00;">Clear</button>
+      <button type="button" id="geo-btn" style="margin-left: 10px; background: #53627c;">My city</button>
     </form>
   </div>
 </section>
